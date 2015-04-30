@@ -1,58 +1,86 @@
-<%= form.field_container :title do %>
-  <%= form.label :title, Spree.t('essential_content.content.title') %><br />
-  <%= form.text_field :title, :class => "title fullwidth"  %>
-  <%= error_message_on :content, :title %>
-<% end %>
+<div data-hook="admin_product_form_fields">
 
-<%= form.field_container :hide_title do %>
-  <%= form.check_box :hide_title, class: "checkbox" %>
-  <%= form.label :hide_title, Spree.t('essential_content.content.hide_title') %><br />
-  <%= error_message_on :content, :hide_title %>
-<% end %>
+  <div class="row">
 
-<%= form.field_container :page do %>
-  <%= form.label :page_id, Spree.t('essential_content.content.page') %><br />
-  <%= form.select :page_id, @pages.collect{|i| [i.title, i.id]}  %>
-  <%= error_message_on :content, :page_id %>
-<% end %>
+    <div class="col-md-12" data-hook="admin_product_form_left">
+      <div>
+        <%= form.field_container :title, class: ['form-group'] do %>
+          <%= form.label :title, Spree.t('essential_content.content.title') %><br />
+          <%= form.text_field :title, :class => "form-control"  %>
+          <%= error_message_on :content, :title %>
+        <% end %>
+      </div>
 
-<%= form.field_container :body do %>
-  <%= form.label :title, Spree.t('essential_content.content.body') %><br />
-  <%= form.text_area :body  %>
-  <%= error_message_on :content, :body %>
-<% end %>
+      <div>
+        <%= form.field_container :hide_title, class: ['form-group'] do %>
+          <%= form.check_box :hide_title, class: "checkbox" %>
+          <%= form.label :hide_title, Spree.t('essential_content.content.hide_title') %><br />
+          <%= error_message_on :content, :hide_title %>
+        <% end %>
+      </div>
 
-<%= form.field_container :context do %>
-  <%= form.label :context, Spree.t('essential_content.content.context') %><br />
-  <%= form.text_field :context, class: "text fullwidth"  %>
-  <%= error_message_on :content, :context %>
-<% end %>
+      <div>
+        <%= form.field_container :page, class: ['form-group'] do %>
+          <%= form.label :page_id, Spree.t('essential_content.content.page') %><br />
+          <%= form.select :page_id, @pages.collect{|i| [i.title, i.id]}  %>
+          <%= error_message_on :content, :page_id %>
+        <% end %>
+      </div>
 
-<%= form.field_container :attachment do %>
-  <%= form.label :attachment, Spree.t('essential_content.content.attachment') %><br />
-  <%= form.file_field :attachment %>
-  <%= error_message_on :content, :attachment %>
-<% end %>
+      <div>
+        <%= form.field_container :body, class: ['form-group'] do %>
+          <%= form.label :title, Spree.t('essential_content.content.body') %><br />
+          <%= form.text_area :body, rows: 20,class: 'form-control'  %>
+          <%= error_message_on :content, :body %>
+        <% end %>
+      </div>
 
-<% if @content.attachment.exists?(:mini) %>
-  <%= form.field_container :delete_attachment do %>
-    <%= form.check_box :delete_attachment %>
-    <%= form.label :delete_attachment, Spree.t('essential_content.content.delete_attachment') %><br />
-  <% end %>
-<% end %>
+      <div>
+        <%= form.field_container :context, class: ['form-group'] do %>
+          <%= form.label :context, Spree.t('essential_content.content.context') %><br />
+          <%= form.text_field :context, class: "form-control"  %>
+          <%= error_message_on :content, :context %>
+        <% end %>
+      </div>
 
-<% if @content.attachment.exists?(:mini) %>
-  <p><%= image_tag @content.attachment.url(:mini) %></p>
-<% end %>
+      <div>
+        <%= form.field_container :attachment, class: ['form-group'] do %>
+          <%= form.label :attachment, Spree.t('essential_content.content.attachment') %><br />
+          <%= form.file_field :attachment %>
+          <%= error_message_on :content, :attachment %>
+        <% end %>
+      </div>
 
-<%= form.field_container :link do %>
-  <%= form.label :link, Spree.t('essential_content.content.link') %><br />
-  <%= form.text_field :link, class: "text fullwidth" %>
-  <%= error_message_on :content, :link %>
-<% end %>
+      <% if @content.attachment.exists?(:mini) %>
+        <div>
+          <%= form.field_container :delete_attachment, class: ['form-group'] do %>
+            <%= form.check_box :delete_attachment %>
+            <%= form.label :delete_attachment, Spree.t('essential_content.content.delete_attachment') %><br />
+          <% end %>
+        </div>
+      <% end %>
 
-<%= form.field_container :link_text do %>
-  <%= form.label :link_text, Spree.t('essential_content.content.link_text') %><br />
-  <%= form.text_field :link_text, class: "text fullwidth"  %>
-  <%= error_message_on :content, :link_text %>
-<% end %>
+      <% if @content.attachment.exists?(:mini) %>
+        <div>
+          <p><%= image_tag @content.attachment.url(:mini) %></p>
+        </div>
+      <% end %>
+
+      <div>
+        <%= form.field_container :link, class: ['form-group'] do %>
+          <%= form.label :link, Spree.t('essential_content.content.link') %><br />
+          <%= form.text_field :link, class: "form-control" %>
+          <%= error_message_on :content, :link %>
+        </div>
+      <% end %>
+
+      <div>
+        <%= form.field_container :link_text, class: ['form-group'] do %>
+          <%= form.label :link_text, Spree.t('essential_content.content.link_text') %><br />
+          <%= form.text_field :link_text, class: "form-control"  %>
+          <%= error_message_on :content, :link_text %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
