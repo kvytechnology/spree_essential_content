@@ -19,7 +19,8 @@ class Spree::Content < ActiveRecord::Base
   scope :for, Proc.new{|context| where(context: context)}
 
   before_update :delete_attachment!, if: :delete_attachment
-  before_update :reprocess_images_if_context_changed
+  # todo: Fix infinite loop that this sometimes does
+  # before_update :reprocess_images_if_context_changed
 
   [ :link_text, :link, :body ].each do |property|
     define_method "has_#{property.to_s}?" do
