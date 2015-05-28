@@ -47,7 +47,7 @@
 <%= paginate @collection %>
 
 <% if @collection.any? %>
-  <table class="index">
+  <table class="index table">
     <thead>
       <tr data-hook="admin_blogs_index_headers">
           <th><%= sort_link @search, :title, Spree.t("essential_content.post.title") %></th>

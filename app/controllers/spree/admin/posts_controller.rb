@@ -9,6 +9,12 @@ module Spree
         @post.posted_at ||= Time.now
       end
 
+      def show
+        @post ||= Spree::Post.find_by_path(params[:id])
+
+        redirect_to edit_admin_post_path @post
+      end
+
       private
 
       def set_category_ids
