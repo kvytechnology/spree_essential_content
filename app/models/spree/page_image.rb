@@ -2,6 +2,7 @@ class Spree::PageImage < Spree::Asset
   
   has_attached_file :attachment,
     :styles => Proc.new{ |clip| clip.instance.attachment_sizes },
+    :default_style => :original,
     :url => '/spree/pages/:id/:style/:basename.:extension',
     :path => ':rails_root/public/spree/pages/:id/:style/:basename.:extension'
 

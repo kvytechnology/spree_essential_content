@@ -7,7 +7,7 @@ class Spree::Content < ActiveRecord::Base
 
   has_attached_file :attachment,
     styles:        Proc.new{ |clip| clip.instance.attachment_sizes },
-    default_style: :preview,
+    default_style: :original,
     url:           "/spree/contents/:id/:style/:basename.:extension",
     path:          ":rails_root/public/spree/contents/:id/:style/:basename.:extension"
 
