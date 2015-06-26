@@ -2,6 +2,8 @@ module Spree
   module Admin
     class PostsController < ResourceController
 
+      helper "spree/blogs/posts"
+
       update.before :set_category_ids
 
       def new

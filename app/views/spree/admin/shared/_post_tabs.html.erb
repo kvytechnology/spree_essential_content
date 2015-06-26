@@ -7,31 +7,18 @@
 <% end %>
 
 <% content_for :sidebar do %>
-  <header id="post_tab_summary" data-hook>
-    <dl class="additional-info">
-      <dt id="post_date" data-hook><%= Spree.t('essential_content.post.posted_at') %>:</dt>
-      <dd><%= h(@post.posted_at.strftime("%A %B %d, %Y")) %></dd>
-      <dt data-hook><%= Spree.t('essential_content.post.posted_in') %>:</dt>
-      <dd id='posted_in'><%= link_to @post.blog.name, edit_admin_blog_path(@post.blog) %></dd>
-      <dt data-hook><%= Spree.t('essential_content.post.published') %>:</dt>
-      <dd id='posted_in'><%= (@post.live && @post.posted_at <= Time.now) ? "<span class='state complete'>Yes</span>".html_safe : "<span class='state pending'>No</span>".html_safe %></dd>
-    </dl>
-  </header>
-
-  <nav class="menu">
-    <ul class="sidebar post-menu">
-      <li<%= ' class="active"'.html_safe if current == "Post Details" %>>
-        <%= link_to_with_icon 'edit', Spree.t("essential_content.admin.post_details"), edit_admin_post_url(@post) %>
-      </li>
-      <li<%= ' class="active"'.html_safe if current == "Images" %>>
-        <%= link_to_with_icon 'picture-o', Spree.t(:images), admin_post_images_url(@post) %>
-      </li>
-      <li<%= ' class="active"'.html_safe if current == "Related Products" %>>
-        <%= link_to_with_icon 'sitemap', Spree.t("essential_content.admin.products_related"), admin_post_products_url(@post) %>
-      </li>
-      <li<%= ' class="active"'.html_safe if current == "Categories" %>>
-        <%= link_to_with_icon 'tags', Spree.t("essential_content.admin.post_categories"), admin_post_categories_url(@post) %>
-      </li>
-    </ul>
-  </nav>
+  <ul class="nav nav-pills nav-stacked" data-hook="admin_post_tabs">
+    <li<%= ' class="active"'.html_safe if current == "Post Details" %>>
+      <%= link_to_with_icon 'edit', Spree.t("essential_content.admin.post_details"), edit_admin_post_url(@post) %>
+    </li>
+    <li<%= ' class="active"'.html_safe if current == "Images" %>>
+      <%= link_to_with_icon 'picture-o', Spree.t(:images), admin_post_images_url(@post) %>
+    </li>
+    <li<%= ' class="active"'.html_safe if current == "Related Products" %>>
+      <%= link_to_with_icon 'sitemap', Spree.t("essential_content.admin.products_related"), admin_post_products_url(@post) %>
+    </li>
+    <li<%= ' class="active"'.html_safe if current == "Categories" %>>
+      <%= link_to_with_icon 'tags', Spree.t("essential_content.admin.post_categories"), admin_post_categories_url(@post) %>
+    </li>
+  </ul>
 <% end %>

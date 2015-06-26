@@ -1,57 +1,69 @@
 <% config = Spree::ContentConfiguration.new %>
-<div>
+<div data-hook="admin_post_form_fields">
   <div class="row">
-    <div class="col-md-12" data-hook="admin_post_form_left">
-      <fieldset data-hook="new_post">
-        <legend align="center"><%= Spree.t('essential_content.blog.info') %></legend>
-          <%= form.field_container :blog_id do %>
-            <%= form.label :blog_id, Spree.t("essential_content.blog.name") %><br />
-            <%= form.select :blog_id, Spree::Blog.to_options, :class => 'form-control' %>
-            <%= error_message_on :post, :blog_id %>
-          <% end %>
+    <div class="col-md-8" data-hook="admin_post_form_left">
+      <%= form.field_container :title, class: ['form-group'] do %>
+        <%= form.label :title, Spree.t("essential_content.post.title") %><br />
+        <%= form.text_field :title, :class => 'form-control' %>
+        <%= error_message_on :post, :title %>
+      <% end %>
+      <%= form.field_container :blog_id, class: ['form-group'] do %>
+        <%= form.label :blog_id, Spree.t("essential_content.blog.name") %><br />
+        <%= form.select :blog_id, Spree::Blog.to_options, {}, :class => 'select2' %>
+        <%= error_message_on :post, :blog_id %>
+      <% end %>
+      <%= form.field_container :live, class: ['form-group'] do %>
+        <%= form.check_box :live  %> <%= form.label :live, Spree.t("essential_content.post.live") %><br />
+      <% end %>
 
-          <%= form.field_container :title do %>
-            <%= form.label :title, Spree.t("essential_content.post.title") %><br />
-            <%= form.text_field :title, :class => 'form-control' %>
-            <%= error_message_on :post, :title %>
-          <% end %>
+      <%= form.field_container :posted_at, class: ['form-group'] do %>
+        <%= form.label :posted_at, Spree.t("essential_content.post.posted_at") %><br />
+        <%= form.text_field :posted_at, :class => 'form-control' %><br />
+        <%= error_message_on :post, :posted_at %>
+      <% end %>
 
-          <%= form.field_container :posted_at do %>
-            <%= form.label :posted_at, Spree.t("essential_content.post.posted_at") %><br />
-            <%= form.text_field :posted_at, :class => 'form-control' %><br />
-            <%= error_message_on :post, :posted_at %>
-          <% end %>
+      <%= form.field_container :teaser, class: ['form-group'] do %>
+        <%= form.label :teaser, Spree.t("essential_content.post.teaser") %><br />
+        <%= form.text_field :teaser, :class => 'form-control' %><br />
+        <%= error_message_on :post, :teaser %>
+      <% end %>
 
-          <%= form.field_container :teaser do %>
-            <%= form.label :teaser, Spree.t("essential_content.post.teaser") %><br />
-            <%= form.text_field :teaser, :class => 'form-control' %><br />
-            <%= error_message_on :post, :teaser %>
-          <% end %>
+      <%= form.field_container :author, class: ['form-group'] do %>
+        <%= form.label :author, Spree.t("essential_content.post.author") %><br />
+        <%= form.text_field :author, :class => 'form-control' %><br />
+        <%= error_message_on :post, :author %>
+      <% end %>
 
-          <%= form.field_container :author do %>
-            <%= form.label :author, Spree.t("essential_content.post.author") %><br />
-            <%= form.text_field :author, :class => 'form-control' %><br />
-            <%= error_message_on :post, :author %>
-          <% end %>
+      <%= form.field_container :body, class: ['form-group'] do %>
+        <%= form.label :body, Spree.t("essential_content.post.body") %>
+        <br />
+        <%= form.cktext_area :body, :class => 'form-control', :rows => 40  %>
+        <%= error_message_on :post, :body %>
+      <% end %>
+                        
+      <%= form.field_container :tag_list, class: ['form-group'] do %>
+        <%= form.label :tag_list, Spree.t("essential_content.post.tags") %><br />
+        <%= form.text_field :tag_list, :class => 'form-control' %><br />
+        <%= error_message_on :post, :tag_list %>
+      <% end %>
 
-          <%= form.field_container :body do %>
-            <%= form.label :body, Spree.t("essential_content.post.body") %>
-            <br />
-            <%= form.cktext_area :body, :class => 'form-control', :rows => 40  %>
-            <%= error_message_on :post, :body %>
-          <% end %>
-
-          <%= form.field_container :tag_list do %>
-            <%= form.label :tag_list, Spree.t("essential_content.post.tags") %><br />
-            <%= form.text_field :tag_list, :class => 'form-control' %><br />
-            <%= error_message_on :post, :tag_list %>
-          <% end %>
-
-          <%= form.field_container :live do %>
-            <%= form.check_box :live  %> <%= form.label :live, Spree.t("essential_content.post.live") %><br />
-          <% end %>
-        </fieldset>
-      </div>
+      <%= form.field_container :link, class: ['form-group'] do %>
+        <%= form.label :link, Spree.t("essential_content.post.link") %><br />
+        <%= form.text_field :link, :class => 'form-control' %><br />
+        <%= error_message_on :post, :link %>
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <header id="post_tab_summary" data-hook>
+        <dl class="additional-info">
+          <dt id="post_date" data-hook><%= Spree.t('essential_content.post.posted_at') %>:</dt>
+          <dd><%= h(@post.posted_at.strftime("%A %B %d, %Y")) %></dd>
+          <dt data-hook><%= Spree.t('essential_content.post.posted_in') %>:</dt>
+          <dd id='posted_in'><%= link_to @post.blog.name, edit_admin_blog_path(@post.blog) %></dd>
+          <dt data-hook><%= Spree.t('essential_content.post.published') %>:</dt>
+          <dd id='posted_in'><%= (@post.live && @post.posted_at <= Time.now) ? "<span class='state complete'>Yes</span>".html_safe : "<span class='state pending'>No</span>".html_safe %></dd>
+        </dl>
+      </header>
     </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <%= render partial: 'spree/admin/shared/post_tabs', locals: {current: "Categories"} %>
 
 <% content_for :page_actions do %>
-  <li><%= link_to_with_icon('plus', Spree.t('essential_content.admin.post_category_new'), new_admin_post_category_url(@post), id: 'btn_new_category', class: 'button') %></li>
+  <%= button_link_to Spree.t('essential_content.admin.post_category_new'), new_admin_post_category_url(@post), :class => "btn-success", :icon => 'plus', :id => 'admin_new_category' %>
 <% end %>
 
 <div id="new_category"></div>
@@ -15,7 +15,7 @@
     <fieldset>
       <legend><%= Spree.t('essential_content.admin.post_category_manage') %></legend>
 
-      <table class="index" data-hook="categories_table">
+      <table class="table" data-hook="categories_table">
         <colgroup>
            <col style="width: 85%">
            <col style="width: 15%">

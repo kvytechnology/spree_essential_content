@@ -1,17 +1,23 @@
 <%= render partial: 'spree/admin/shared/post_tabs', locals: {current: "Related Products"} %>
 
 <%= form_for [:admin, @post ] do |f| %>
-  <fieldset data-hook="related_products" class="no-border-top">
-    <div data-hook="products"  class="field twelve columns alpha">
-      <%= label_tag "post[product_ids_string]", "Choose products" %>
-      <%= hidden_field_tag "post[product_ids_string]", @post.product_ids.join(","), class: "product_picker fullwidth" %>
-    </div>
+  <fieldset>
+    <div data-hook="related_products">
+      <div class="row">
+        <div data-hook="products"  class="col-md-12">
+          <%= f.field_container :products, class: ['form-group'] do %>
+            <%= label_tag "post[product_ids_string]", "Choose products" %>
+            <%= hidden_field_tag "post[product_ids_string]", @post.product_ids.join(","), class: "product_picker fullwidth" %>
+          <% end %>
+        </div>
+      </div>
 
-    <div class="form-buttons filter-actions actions" data-hook="buttons">
-      <%= hidden_field_tag :redirect_to, request.url, class: "hidden" %>
-      <%= button Spree.t(:update), 'refresh' %>
-      <span class="or"><%= Spree.t(:or) %></span>
-      <%= link_to_with_icon 'remove', Spree.t(:cancel), request.url, id: 'cancel_link', class: 'button' %>
+      <div class="form-actions" data-hook="buttons">
+        <%= hidden_field_tag :redirect_to, request.url, class: "hidden" %>
+        <%= button Spree.t(:update), 'refresh' %>
+        <span class="or"><%= Spree.t(:or) %></span>
+        <%= button_link_to Spree.t(:cancel), request.url, icon: 'cancel', id: 'cancel_link' %>
+      </div>
     </div>
   </fieldset>
 <% end %>

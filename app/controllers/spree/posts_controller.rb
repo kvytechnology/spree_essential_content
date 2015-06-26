@@ -76,7 +76,11 @@ module Spree
   private
 
     def default_scope
-      @blog.posts.live
+      if try_spree_current_user.try(:has_spree_role?, "admin")
+        @blog.posts
+      else
+        @blog.posts.live
+      end
     end
 
     def get_sidebar

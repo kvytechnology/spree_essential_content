@@ -5,12 +5,8 @@
 <% end %>
 
 <% content_for :page_actions do %>
-  <li id="new_post_link">
-    <%= button_link_to Spree.t('essential_content.admin.post_new'), new_admin_post_url, icon: 'plus', id: 'admin_new_post' %>
-  </li>
-  <li id="manage_blogs_link">
-    <%= button_link_to Spree.t('essential_content.admin.blog_manage'), admin_blogs_url, icon: 'file', id: 'admin_manage_blogs' %>
-  </li>
+    <%= button_link_to Spree.t('essential_content.admin.post_new'), new_admin_post_url, :class => "btn-success", icon: 'plus', id: 'admin_new_post' %>
+    <%= button_link_to Spree.t('essential_content.admin.blog_manage'), admin_blogs_url, :class => "btn-info", icon: 'file', id: 'admin_manage_blogs' %>
 <% end %>
 
 <% content_for :table_filter_title do %>
@@ -18,24 +14,24 @@
 <% end %>
 
 <% content_for :table_filter do %>
-  <div data-hook="admin_products_sidebar">
+  <div data-hook="admin_posts_sidebar">
     <%= search_form_for [:admin, @search] do |f| %>
       <%- locals = {f: f} %>
-      <div data-hook="admin_products_index_search">
-        <div class="alpha eight columns omega">
-          <div class="field">
-            <%= f.label :blog_id_eq, Spree.t("essential_content.blog.name") %>
-            <%= f.select :blog_id_eq, Spree::Blog.to_options, selected: (params[:q][:blog_id_eq] if params[:q]), include_blank: true %>
+      <div class="row">
+        <div class="form-group">
+          <div class="col-md-4">
+              <%= f.label :blog_id_eq, Spree.t("essential_content.blog.name") %>
+              <%= f.select :blog_id_eq, Spree::Blog.to_options, {selected: (params[:q][:blog_id_eq] if params[:q]), include_blank: true}, :class => 'select2' %>
           </div>
-        </div>
-        <div class="eight columns">
-          <div class="field">
-            <%= f.label :title_cont, Spree.t("essential_content.post.title") %>
-            <%= f.text_field :title_cont, size: 25 %> </div>
+          <div class="col-md-4">
+          <%= f.label :blog_id_eq, Spree.t(:select_visibility) %>
+          <%= f.select :live_eq, [['Visible',true],['Hidden',false]], {selected: (params[:q][:live_eq] if params[:q]), include_blank: true}, :class => 'select2' %>
+          </div>
+          <div class="col-md-4">
+              <%= f.label :title_cont, Spree.t("essential_content.post.title") %>
+              <%= f.text_field :title_cont, size: 25, :class => 'form-control' %> </div>
         </div>
       </div>
-
-      <div class="clear"></div>
 
       <div class="form-buttons actions filter-actions" data-hook="admin_products_index_search_buttons">
         <%= button Spree.t(:search), 'search' %>
