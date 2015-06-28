@@ -58,8 +58,10 @@
         <dl class="additional-info">
           <dt id="post_date" data-hook><%= Spree.t('essential_content.post.posted_at') %>:</dt>
           <dd><%= h(@post.posted_at.strftime("%A %B %d, %Y")) %></dd>
+          <% unless @post.blog.nil? %>
           <dt data-hook><%= Spree.t('essential_content.post.posted_in') %>:</dt>
           <dd id='posted_in'><%= link_to @post.blog.name, edit_admin_blog_path(@post.blog) %></dd>
+          <% end %>
           <dt data-hook><%= Spree.t('essential_content.post.published') %>:</dt>
           <dd id='posted_in'><%= (@post.live && @post.posted_at <= Time.now) ? "<span class='state complete'>Yes</span>".html_safe : "<span class='state pending'>No</span>".html_safe %></dd>
         </dl>
