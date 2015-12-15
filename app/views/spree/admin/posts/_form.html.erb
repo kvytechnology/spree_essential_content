@@ -46,12 +46,6 @@
         <%= form.text_field :tag_list, :class => 'form-control' %><br />
         <%= error_message_on :post, :tag_list %>
       <% end %>
-
-      <%= form.field_container :link, class: ['form-group'] do %>
-        <%= form.label :link, Spree.t("essential_content.post.link") %><br />
-        <%= form.text_field :link, :class => 'form-control' %><br />
-        <%= error_message_on :post, :link %>
-      <% end %>
     </div>
     <div class="col-md-4">
       <header id="post_tab_summary" data-hook>
