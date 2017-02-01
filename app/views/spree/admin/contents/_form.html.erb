@@ -30,7 +30,7 @@
       <div>
         <%= form.field_container :body, class: ['form-group'] do %>
           <%= form.label :title, Spree.t('essential_content.content.body') %><br />
-          <%= form.text_area :body, rows: 20,class: 'form-control'  %>
+          <%= form.text_area :body, rows: 20,class: 'summernote form-control'  %>
           <%= error_message_on :content, :body %>
         <% end %>
       </div>

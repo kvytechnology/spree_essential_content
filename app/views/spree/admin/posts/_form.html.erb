@@ -37,7 +37,7 @@
       <%= form.field_container :body, class: ['form-group'] do %>
         <%= form.label :body, Spree.t("essential_content.post.body") %>
         <br />
-        <%= form.cktext_area :body, :class => 'form-control', :rows => 40  %>
+        <%= form.text_area :body, :class => 'summernote form-control', :rows => 40  %>
         <%= error_message_on :post, :body %>
       <% end %>
                         
