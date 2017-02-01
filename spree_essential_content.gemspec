@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_essential_content'
-  s.version     = '3.1.0.2'
+  s.version     = '3.1.0.3'
   s.authors     = ["Spencer Steffen", "Nathan Lowrie"]
   s.email       = ["spencer@citrusme.com", "nate@finelineautomation.com"]
   s.homepage    = "https://github.com/FineLineAutomation/spree_essential_content"
@@ -16,7 +16,6 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_dependency 'spree_core', '~> 3.1.0'
-  s.add_dependency 'bootstrap-sass'
   s.add_dependency 'summernote-rails', '~> 0.8'
 
 

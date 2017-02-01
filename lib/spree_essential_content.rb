@@ -1,7 +1,6 @@
 require 'spree_core'
 require "acts-as-taggable-on"
 require "summernote-rails"
-require "bootstrap-sass"
 
 require 'spree_essential_content/engine'
 

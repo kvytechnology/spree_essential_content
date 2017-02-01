@@ -1,5 +1,5 @@
 
-//= require bootstrap
+// require bootstrap
 //= require summernote
 // require_tree .
 
