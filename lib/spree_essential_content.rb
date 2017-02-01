@@ -1,5 +1,6 @@
 require 'spree_core'
 require "acts-as-taggable-on"
+require "ckeditor"
 
 require 'spree_essential_content/engine'
 
