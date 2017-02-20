@@ -7,6 +7,8 @@
 //load summernote
 $(document).ready(function() {
     $('.summernote').each(function(i,v) {
-      $(v).summernote();
+      $(v).summernote({
+        height:400
+      });
     });
 });
