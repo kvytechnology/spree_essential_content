@@ -1,18 +1,17 @@
-<%= render partial: 'spree/admin/shared/contents_sub_menu' %>
-<%= render partial: 'spree/admin/shared/post_tabs', locals: {current: "Images"} %>
-
 <% content_for :page_actions do %>
-  <%= button_link_to Spree.t(:new_image), new_admin_post_image_url(@post), :class => "btn-success", :icon => 'plus', :id => 'admin_new_image' %>
+  <%= button_link_to Spree.t(:new_image), new_admin_post_image_url(@post), { class: "btn-success", icon: 'plus', id: 'new_image_link'} %>
 <% end %>
 
-<div id="images" data-hook></div>
+<%= render partial: 'spree/admin/shared/post_tabs', locals: {current: "Images"} %>
 
-<% unless @post.images.any? %>
-  <div class="no-objects-found">
-    <%= Spree.t(:no_images_found) %>.
-  </div>
-<% else %>
+<% if @post.images.any? %>
   <table class="table sortable" data-hook="images_table" data-sortable-link="<%= update_positions_admin_post_images_url(@post) %>">
+    <colgroup>
+       <col style="width: 5%">
+       <col style="width: 25%">
+       <col style="width: 55%">
+       <col style="width: 15%">
+    </colgroup>
     <thead>
       <tr>
         <th colspan="2"><%= Spree.t("thumbnail") %></th>
@@ -20,35 +19,25 @@
         <th data-hook="admin_post_images_index_header_actions" class="actions"></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="ui-sortable">
       <% @post.images.each do |image| %>
-        <tr id="<%= spree_dom_id image %>" data-hook="images_row">
+        <tr id="<%= spree_dom_id(image) %>">
           <td class="move-handle text-center">
-            <% if can? :edit, image %>
-              <span class="icon icon-move handle"></span>
-            <% end %>
+            <span class="icon icon-move handle"></span>
           </td>
           <td><%= link_to(image_tag(image.attachment.url(:small)), image.attachment.url(:large)) %></td>
           <td><%= image.alt %></td>
-          <td class="actions" data-hook="admin_post_images_index_row_actions">
-            <%= link_to_with_icon 'edit', Spree.t(:edit), edit_admin_post_image_path(@post, image), no_text: true, data: {action: 'edit'} %>
-            &nbsp;
+          <td class="actions actions-2 text-right" data-hook="admin_post_images_index_row_actions">
+            <%= link_to_edit image, no_text: true, class: 'edit', url: edit_admin_post_image_path(@post, image) %> &nbsp;
             <%= link_to_delete image, no_text: true, url: admin_post_image_url(@post, image) %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-<% end %>
-
-<% content_for :head do %>
-  <script type="text/javascript">
-    jQuery(document).ready(function(){
-      jQuery('#new_image_link').click(function (event) {
-        event.preventDefault();
-        jQuery(this).hide();
-        jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN}), success: function(r){ jQuery('#images').html(r);} });
-      });
-    });
-  </script>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::PostImage)) %>,
+    <%= link_to Spree.t(:add_one), new_object_url %>!
+  </div>
 <% end %>

@@ -41,7 +41,7 @@ class Spree::Content < ActiveRecord::Base
   end
 
   def rendered_body
-    body.to_html.html_safe
+    body.html_safe
   end
 
   def default_attachment_sizes

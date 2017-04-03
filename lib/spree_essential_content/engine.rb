@@ -11,7 +11,7 @@ module SpreeEssentialContent
     initializer "spree.essential_content.paperclip", :before => :load_config_initializers do |app|
       Paperclip::Attachment.default_options.merge!(
         :style => :medium
-      )    
+      )
     end
 
     config.autoload_paths += %W(#{config.root}/lib)
@@ -19,14 +19,7 @@ module SpreeEssentialContent
 
     # use rspec for tests
     config.generators do |g|
-       g.test_framework :rspec,
-         fixtures: true,
-         view_specs: false,
-         helper_specs: false,
-         routing_specs: false,
-         controller_specs: true,
-         request_specs: false
-       g.fixture_replacement :factory_girl, dir: "spec/factories"
+      g.test_framework :rspec
     end
 
     def self.activate

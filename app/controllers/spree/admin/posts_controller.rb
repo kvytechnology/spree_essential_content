@@ -26,8 +26,7 @@ module Spree
       end
 
       def location_after_save
-        path = params[:redirect_to].to_s.strip.sub(/^\/+/, "/")
-        path.blank? ? object_url : path
+        admin_posts_url
       end
 
       def find_resource
@@ -37,7 +36,6 @@ module Spree
       def collection
         params[:q] ||= {}
         params[:q][:s] ||= "posted_at desc"
-        puts params
         @search = Spree::Post.search(params[:q])
         @collection = @search.result.page(params[:page]).per(Spree::Config[:orders_per_page])
       end

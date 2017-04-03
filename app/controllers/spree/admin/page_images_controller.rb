@@ -5,15 +5,6 @@ class Spree::Admin::PageImagesController < Spree::Admin::ResourceController
   update.before :set_viewable
   destroy.before :destroy_before
 
-  def update_positions
-    params[:positions].each do |id, index|
-      Spree::PageImage.update_all(['position=?', index], ['id=?', id])
-    end
-    respond_to do |format|
-      format.js  { render text: 'Ok' }
-    end
-  end
-
   private
 
   def location_after_save
@@ -21,7 +12,7 @@ class Spree::Admin::PageImagesController < Spree::Admin::ResourceController
   end
 
   def load_data
-    @page = Spree::Page.find_by_path(params[:page_id])
+    @page ||= Spree::Page.where(path: params[:page_id]).first
   end
 
   def set_viewable

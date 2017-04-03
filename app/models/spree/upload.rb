@@ -1,6 +1,11 @@
 class Spree::Upload < Spree::Asset
-
   validate :no_attachment_errors
+
+  after_initialize do
+    if has_attribute?(:whitelisted_ransackable_attributes)
+      self.whitelisted_ransackable_attributes = ['alt', 'attachment_file_name']
+    end
+  end
 
   has_attached_file :attachment,
     styles:        Proc.new{ |clip| clip.instance.attachment_sizes },
@@ -35,5 +40,4 @@ class Spree::Upload < Spree::Asset
   def has_alt?
     alt.present?
   end
-
 end

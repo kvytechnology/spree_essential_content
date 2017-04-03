@@ -1,4 +1,6 @@
 class Spree::Page < ActiveRecord::Base
+  acts_as_list
+
   RESERVED_PATHS = /(^\/+(admin|account|cart|checkout|content|login|logout|pg\/|orders|products|s\/|session|signup|shipments|states|t\/|tax_categories|user|paypal)+)/
 
   alias_attribute :name, :title
@@ -41,7 +43,6 @@ class Spree::Page < ActiveRecord::Base
   end
 
   def root?
-    puts self.path
     self.path == "__home__"
   end
 
