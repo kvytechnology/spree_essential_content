@@ -16,7 +16,7 @@ module Spree
         params[:search] ||= {}
         params[:search][:meta_sort] ||= "name.asc"
         @search = Spree::Blog.search(params[:q])
-        @collection = @search.result.page(params[:page]).per(Spree::Config[:orders_per_page])
+        @collection = @search.result.page(params[:page]).per(Spree::Config[:products_per_page])
       end
 
     end

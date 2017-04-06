@@ -1,33 +1,3 @@
-<<<<<<< HEAD
-<div>
-  <div class="row">
-    <div class="col-md-8" data-hook="admin_product_form_left">
-      <fieldset data-hook="new_product">
-        <legend align="center"><%= Spree.t('essential_content.page.info') %></legend>
-
-        <%= form.field_container :title do %>
-          <%= form.label :title, Spree.t('essential_content.page.title') %> <span class="required">*</span><br />
-          <%= form.text_field :title, :class => "title", :class => 'form-control' %>
-          <%= error_message_on :page, :title %>
-        <% end %>
-
-        <%= form.field_container :meta_title do %>
-          <%= form.label :meta_title, Spree.t('essential_content.page.meta_title') %><br />
-          <%= form.text_field :meta_title, :class => 'form-control' %>
-          <%= error_message_on :page, :meta_title %>
-        <% end %>
-
-        <%= form.field_container :meta_description do %>
-          <%= form.label :meta_description, Spree.t('essential_content.page.meta_description') %><br />
-          <%= form.text_field :meta_description, :class => 'form-control' %>
-          <%= error_message_on :page, :meta_description %>
-        <% end %>
-
-        <%= form.field_container :meta_keywords do %>
-          <%= form.label :meta_keywords, Spree.t('essential_content.page.meta_keywords') %><br />
-          <%= form.text_field :meta_keywords, :class => 'form-control' %>
-          <%= error_message_on :page, :meta_keywords %>
-=======
 <div class="row">
   <div class="col-md-6">
     <fieldset data-hook="new_product">
@@ -75,29 +45,8 @@
           <%= form.label :path, Spree.t('essential_content.page.path') %><br />
           <%= form.text_field :path, class: "form-control title" %>
           <%= error_message_on :page, :path %>
->>>>>>> 0d3ffca9a410e791a567df651e52f08ff03924f0
-        <% end %>
-      </fieldset>
-    </div>
-    <div class="col-md-4" data-hook="admin_page_form_fields">
-        <fieldset data-hook="new_product">
-        <legend align="center"><%= Spree.t('essential_content.page.accessibility') %></legend>
-
-<<<<<<< HEAD
-        <%= form.field_container :accessible, class: ['form-group'] do %>
-          <%= form.check_box :accessible, :class => "text"  %> &nbsp;
-          <%= form.label :accessible, Spree.t('essential_content.page.accessible') %>
-          <br /> <em><%= Spree.t('essential_content.page.explain_accessible') %></em>
-          <%= error_message_on :page, :accessible %>
         <% end %>
 
-        <div id="field_path">
-
-          <%= form.field_container :path, class: ['form-group'] do %>
-            <%= form.label :path, Spree.t('essential_content.page.path') %><br />
-            <%= form.text_field :path, :class => 'form-control' %>
-            <%= error_message_on :page, :path %>
-=======
         <%= form.field_container :visible, class: ['form-group'] do %>
           <%= form.check_box :visible, class: "text" %> &nbsp;
           <%= form.label :visible, Spree.t('essential_content.page.visible') %>
@@ -110,37 +59,21 @@
             <%= form.label :nav_title, Spree.t('essential_content.page.nav_title') %><br />
             <%= form.text_field :nav_title, class: "form-control title" %>
             <%= error_message_on :page, :nav_title %>
->>>>>>> 0d3ffca9a410e791a567df651e52f08ff03924f0
           <% end %>
-
-          <%= form.field_container :visible, class: ['form-group'] do %>
-            <%= form.check_box :visible, :class => "text" %> &nbsp;
-            <%= form.label :visible, Spree.t('essential_content.page.visible') %>
-            <br /> <em><%= Spree.t('essential_content.page.explain_visible') %></em>
-            <%= error_message_on :page, :visible %>
-          <% end %>
-
-          <div id="field_nav_title">
-            <%= form.field_container :nav_title, class: ['form-group'] do %>
-              <%= form.label :nav_title, Spree.t('essential_content.page.nav_title') %><br />
-              <%= form.text_field :nav_title, :class => 'form-control' %>
-              <%= error_message_on :page, :nav_title %>
-            <% end %>
-          </div>
-        </fieldset>
+        </div>
       </div>
-    </div>
+    </fieldset>
   </div>
 </div>
 
 <script type="text/javascript">
 //<![CDATA[
   $(document).ready(function() {
-  	$('#page_accessible').change(function(evt) {
+    $('#page_accessible').change(function(evt) {
       $('#page_accessible_fields').toggle(this.checked);
     }).change();
 
-  	$('#page_visible').change(function(evt) {
+    $('#page_visible').change(function(evt) {
       $('#page_visible_fields').toggle(this.checked);
     }).change();
   });

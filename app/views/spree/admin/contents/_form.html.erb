@@ -1,4 +1,3 @@
-
 <%= form.field_container :title do %>
   <%= form.label :title, Spree.t('essential_content.content.title') %><br />
   <%= form.text_field :title, :class => "title fullwidth"  %>
@@ -30,7 +29,7 @@
 
 <%= form.field_container :body do %>
   <%= form.label :title, Spree.t('essential_content.content.body') %><br />
-  <%= form.text_area :body, rows: 10, class: "fullwidth summernote form-control" %>
+  <%= form.text_area :body, rows: 10, class: "fullwidth" %>
   <%= error_message_on :content, :body %>
 <% end %>
 
