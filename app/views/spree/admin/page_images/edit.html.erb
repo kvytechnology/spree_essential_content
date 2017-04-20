@@ -8,12 +8,15 @@
   <fieldset>
     <legend><%= (Spree.t('essential_content.admin.page_image_editing') + " - #{@page_image.attachment_file_name}").html_safe %></legend>
 
-    <div class="field">
-      <%= label_tag (:preview) %>
-      <div style="text-align:center;">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+        <%= label_tag (:preview) %><br>
         <%= link_to(image_tag(@page_image.attachment.url(:medium)), @page_image.attachment.url(:large)) %>
       </div>
+      </div>
     </div>
+
     <%= render "form", :form => f %>
 
     <div class="filter-actions actions">
