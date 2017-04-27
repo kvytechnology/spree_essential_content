@@ -10,7 +10,7 @@ Spree::PermittedAttributes.class_eval do
   @@page_attibutes = [:title, :path, :nav_title, :meta_title, :meta_description, :meta_keywords,
                       :accessible, :visible]
 
-  @@page_image_attributes = [:viewable, :attachment, :alt]
+  @@page_image_attributes = [:viewable, :attachment, :alt, properties_attributes: [:video_url, :position]]
 
   @@post_attributes = [:blog_id, :title, :teaser, :body, :posted_at, :author, :live, :tag_list,
                        :post_category_ids, :product_ids_string]

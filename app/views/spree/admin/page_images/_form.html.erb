@@ -2,13 +2,28 @@
   <div class="col-md-6">
     <div class="form-group">
       <%= form.label :attachment %>
-      <%= form.file_field :attachment %>
+      <%= form.file_field :attachment, class: 'form-control' %>
     </div>
   </div>
   <div class="col-md-6">
     <div class="form-group">
-      <%= form.label :alt %><br>
-      <%= form.text_field :alt %>
+      <%= form.label :alt %>
+      <%= form.text_field :alt, class: 'form-control' %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= form.label :slide_video_url %> <span class="text-muted">(Landing) Adds the ability to display a video url</span>
+      <%= form.text_field :slide_video_url, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= form.label :slide_position %> <span class="text-muted">(Landing) Selects position on screen</span>
+      <%= form.select :slide_position, options_for_select([['Default',0],['Left',1],['Right',2]], selected: form.object.slide_position),{}, class: 'form-control' %>
     </div>
   </div>
 </div>

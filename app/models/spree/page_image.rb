@@ -1,4 +1,6 @@
 class Spree::PageImage < Spree::Asset
+  attr_accessor :slide_video_url, :slide_position, :slide_image_url
+  after_initialize :set_default_properties
   
   has_attached_file :attachment,
     :styles => Proc.new{ |clip| clip.instance.attachment_sizes },
@@ -21,4 +23,30 @@ class Spree::PageImage < Spree::Asset
     end
     sizes
   end
+
+  def slide_image_url
+    image_sizes = Spree::Frontend::ImagesHelper::IMAGE_SIZES
+    dynamic_attachment_url(image_sizes[:landing])
+  end
+
+  def slide_video_url=(url)
+    properties["slide_video_url"] = url
+  end
+
+  def slide_position=(slide_position)
+    properties["slide_position"]  = slide_position
+  end
+
+  def slide_video_url
+    properties["slide_video_url"]
+  end
+
+  def slide_position
+    properties["slide_position"]
+  end
+
+  private
+    def set_default_properties
+      self.properties ||= {slide_video_url: '', slide_position: 0}
+    end
 end
