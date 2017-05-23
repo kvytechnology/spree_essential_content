@@ -5,7 +5,7 @@ Spree::PermittedAttributes.class_eval do
   @@blog_attributes= [:name, :permalink]
 
   @@content_attributes = [:page_id, :title, :body, :hide_title, :link, :link_text, :context,
-                          :attachment, :delete_attachment]
+                          :attachment, :attachmen2, :delete_attachment]
 
   @@page_attibutes = [:title, :path, :nav_title, :meta_title, :meta_description, :meta_keywords,
                       :accessible, :visible]

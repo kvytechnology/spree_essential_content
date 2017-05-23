@@ -11,7 +11,13 @@ class Spree::Content < ActiveRecord::Base
     url:           "/spree/contents/:id/:style/:basename.:extension",
     path:          ":rails_root/public/spree/contents/:id/:style/:basename.:extension"
 
-  validates_attachment_content_type :attachment, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+  has_attached_file :attachment2,
+    styles:        Proc.new{ |clip| clip.instance.attachment_sizes },
+    default_style: :original,
+    url:           "/spree/contents/:id/:style/:basename.:extension",
+    path:          ":rails_root/public/spree/contents/:id/:style/:basename.:extension"
+
+  validates_attachment_content_type [:attachment,:attachment2], :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
   cattr_reader :per_page
   @@per_page = 10
@@ -49,13 +55,7 @@ class Spree::Content < ActiveRecord::Base
   end
 
   def attachment_sizes
-    case self.context
-      when 'slideshow'
-        sizes = default_attachment_sizes.merge(slide: '955x476#')
-      else
-        sizes = default_attachment_sizes
-    end
-    sizes
+    default_attachment_sizes
   end
 
   def context=(value)
@@ -67,6 +67,7 @@ private
   def delete_attachment!
     del = delete_attachment.to_s
     self.attachment = nil if del == "1" || del == "true"
+    self.attachment2 = nil if del == "2" || del == "true"
     true
   end
 

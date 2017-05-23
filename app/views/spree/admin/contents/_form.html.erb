@@ -43,28 +43,57 @@
         <% end %>
       </div>
 
-      <div>
-        <%= form.field_container :attachment, class: ['form-group'] do %>
-          <%= form.label :attachment, Spree.t('essential_content.content.attachment') %><br />
-          <%= form.file_field :attachment %>
-          <%= error_message_on :content, :attachment %>
-        <% end %>
-      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div>
+            <%= form.field_container :attachment, class: ['form-group'] do %>
+              <%= form.label :attachment, Spree.t('essential_content.content.attachment') %><br />
+              <%= form.file_field :attachment %>
+              <%= error_message_on :content, :attachment %>
+            <% end %>
+          </div>
 
-      <% if @content.attachment.exists?(:mini) %>
-        <div>
-          <%= form.field_container :delete_attachment, class: ['form-group'] do %>
-            <%= form.check_box :delete_attachment %>
-            <%= form.label :delete_attachment, Spree.t('essential_content.content.delete_attachment') %><br />
+          <% if @content.attachment.exists?(:mini) %>
+            <div>
+              <%= form.field_container :delete_attachment, class: ['form-group'] do %>
+                <%= form.check_box :delete_attachment, {}, "1", false %>
+                <%= form.label :delete_attachment, Spree.t('essential_content.content.delete_attachment') %><br />
+              <% end %>
+            </div>
+          <% end %>
+
+          <% if @content.attachment.exists?(:mini) %>
+            <div>
+              <p><%= image_tag @content.attachment.url(:mini) %></p>
+            </div>
           <% end %>
         </div>
-      <% end %>
 
-      <% if @content.attachment.exists?(:mini) %>
-        <div>
-          <p><%= image_tag @content.attachment.url(:mini) %></p>
+        <div class="col-md-6">
+          <div>
+            <%= form.field_container :attachment2, class: ['form-group'] do %>
+              <%= form.label :attachment2, Spree.t('essential_content.content.attachment2') %><br />
+              <%= form.file_field :attachment2 %>
+              <%= error_message_on :content, :attachment2 %>
+            <% end %>
+          </div>
+
+          <% if @content.attachment2.exists?(:mini) %>
+            <div>
+              <%= form.field_container :delete_attachment, class: ['form-group'] do %>
+                <%= form.check_box :delete_attachment, {}, "2", false %>
+                <%= form.label :delete_attachment, Spree.t('essential_content.content.delete_attachment') %><br />
+              <% end %>
+            </div>
+          <% end %>
+
+          <% if @content.attachment2.exists?(:mini) %>
+            <div>
+              <p><%= image_tag @content.attachment2.url(:mini) %></p>
+            </div>
+          <% end %>
         </div>
-      <% end %>
+      </div>
 
       <div>
         <%= form.field_container :link, class: ['form-group'] do %>
