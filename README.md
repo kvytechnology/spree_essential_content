@@ -7,10 +7,6 @@ Spree Essential Content is a fully featured CMS with pages, contents, images and
 gem 'spree_essential_content', github: 'kvytechnology/spree_essential_content'
 ```
 
-If you are using a version of spree lower than 2.4, please see one of the stable branches for the right version of this gem. Please also note I am not maintaining anything below Spree 2.3 now.
-
-Then run:
-
 ```bash
 bundle install
 ```
