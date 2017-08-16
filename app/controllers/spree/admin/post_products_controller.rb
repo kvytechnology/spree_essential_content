@@ -2,7 +2,7 @@ module Spree
   module Admin
     class PostProductsController < ResourceController
 
-      before_filter :load_data
+      before_action :load_data
       create.before :set_post_and_product
 
       def set_post_and_product
