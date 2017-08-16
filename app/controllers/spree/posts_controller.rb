@@ -85,7 +85,7 @@ module Spree
 
     def get_sidebar
       @archive_posts = default_scope.web
-      @post_categories = @blog.categories.order(:name).all
+      @post_categories = Spree::PostCategory.order(:name).all
       get_tags
     end
 
